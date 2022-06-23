@@ -1,6 +1,7 @@
 import { useState } from "react";
 import * as utils from "../utils/index";
 
+// functional component
 const HomePage = () => {
   const [arrayNames, setArrayNames] = useState([
     {
