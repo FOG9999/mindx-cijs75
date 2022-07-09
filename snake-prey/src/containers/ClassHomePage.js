@@ -24,11 +24,21 @@ class ClassHomePage extends Component {
     this.setState({
       arrayNames: [{ name: "Lisa" }],
     });
+    console.log(this.state.arrayNames);
   };
 
   renderNames = () => {
     return this.state.arrayNames.map((objName) => <span>{objName.name}</span>);
   };
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.viewInit !== this.state.viewInit){
+      // this.initBoardGame();
+    }
+    if(prevProps.length ){
+
+    }
+  }
 
   render() {
     return (
