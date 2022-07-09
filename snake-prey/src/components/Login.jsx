@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { useCallback } from "react";
+import { useMemo } from "react";
 import { useState } from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
 import { ACCOUNT } from "../consts";
@@ -44,6 +46,17 @@ const Login = () => {
     }
   };
 
+  const useCallbackFunc = useCallback(() => {
+    // ghi nhớ một logic khó  và cache lại trên memory
+    // return một function
+  }, [username]);
+
+
+  const useMemoFunc = useMemo(() => {
+    // ghi nhớ một giá trị cache lại trên memory
+    // return giá trị
+  }, [username])
+
   useEffect(() => {
     console.log(queryParams);
     localStorage.setItem("account", JSON.stringify(ACCOUNT));
@@ -53,32 +66,47 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="login-container">
-      {isLoggedIn ? <Navigate to={"/"} /> : null}
-      <div>
-        <input
-          type="text"
-          value={username}
-          className="username"
-          name="Username"
-          onChange={onChangeInput}
-          autoComplete="off"
-        />
+    // <form>
+      <div className="login-container">
+        {isLoggedIn ? <Navigate to={"/"} /> : null}
+        <div>
+          <input
+            autocomplete="false"
+            name="hidden"
+            type="text"
+            style={{display: 'none'}}
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            value={username}
+            className="username"
+            name="Username"
+            onChange={onChangeInput}
+            // autoComplete="false"
+            // autocomplete="off"
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            className="password"
+            value={password}
+            name="Password"
+            onChange={onChangeInput}
+            autoComplete="new-password"
+            // autocomplete="new-password"
+          />
+        </div>
+        {/* <div>
+          <input type="password" name="password" autocomplete="new-password" />
+        </div> */}
+        <div>
+          <button onClick={() => onLogin()}>Login</button>
+        </div>
       </div>
-      <div>
-        <input
-          type="password"
-          className="password"
-          value={password}
-          name="Password"
-          onChange={onChangeInput}
-          autoComplete="new-password"
-        />
-      </div>
-      <div>
-        <button onClick={() => onLogin()}>Login</button>
-      </div>
-    </div>
+    // </form>
   );
 };
 

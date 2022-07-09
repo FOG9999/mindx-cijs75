@@ -6,6 +6,7 @@ import GameWrapper from "./components/GameWrapper";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./components/Login";
 import StudentList, { StudentListItem } from "./components/StudentList";
+import Parent from "./components/context/Parent";
 // react-router-dom
 
 const authenticate = (component) => {
@@ -23,7 +24,7 @@ const authenticate = (component) => {
 function App() {
   return (
     <Routes>
-      <Route path="/" element={authenticate(<GameWrapper />)} />
+      <Route path="/" element={<Parent />} />
       <Route path="/login" element={<Login />} />
       <Route path="/student/:id" element={<StudentList />}>
         <Route path=":age" element={<StudentListItem />} />
