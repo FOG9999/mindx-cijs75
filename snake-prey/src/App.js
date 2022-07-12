@@ -8,6 +8,15 @@ import Login from "./components/Login";
 import StudentList, { StudentListItem } from "./components/StudentList";
 import Parent from "./components/context/Parent";
 // react-router-dom
+import {io} from 'socket.io-client'
+
+const socket = io('ws://localhost:3000')
+
+socket.connect();
+socket.on('hello', data => {
+  console.log(data);
+  socket.emit('hi', {msg: 'hi'})
+})
 
 const authenticate = (component) => {
   let token = localStorage.getItem('token');

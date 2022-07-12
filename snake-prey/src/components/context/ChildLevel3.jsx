@@ -9,5 +9,5 @@ const ChildLevelThree = ({fromLv2}) => {
     </div>
 }
 
-// export default React.memo(ChildLevelThree);
-export default ChildLevelThree;
+export default React.memo(ChildLevelThree);
+// export default ChildLevelThree;
